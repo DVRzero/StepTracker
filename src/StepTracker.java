@@ -1,132 +1,65 @@
 public class StepTracker {
 
     private int target = 10_000;
+    private Month[] months;
+
+    public StepTracker() {
+        this.months = new Month[12];
+        for (int i = 0; i < months.length; i++) {
+            months[i] = new Month();
+        }
+    }
 
     public int getTarget() {
         return target;
     }
 
     public void setTarget(int newTarget) {
-        if (newTarget > 0) {
-            this.target = newTarget;
-        } else {
-            System.out.println("Цель не может быть отрицательной");
-        }
-        System.out.println("Новая цель установлена");
-        Main.enterCommand();
+        this.target = newTarget;
     }
 
-    int[] daysOfJanuary = new int[30];
-    int[] daysOfFebruary = new int[30];
-    int[] daysOfMarch = new int[30];
-    int[] daysOfApril = new int[30];
-    int[] daysOfMay = new int[30];
-    int[] daysOfJune = new int[30];
-    int[] daysOfJuly = new int[30];
-    int[] daysOfAugust = new int[30];
-    int[] daysOfSeptember = new int[30];
-    int[] daysOfOctober = new int[30];
-    int[] daysOfNovember = new int[30];
-    int[] daysOfDecember = new int[30];
-
     public void setData(int monthNumber, int dayNumber, int numberOfSteps) {
-        switch (monthNumber) {
-            case (0):
-                daysOfJanuary[dayNumber] = numberOfSteps;
-                break;
-            case (1):
-                daysOfFebruary[dayNumber] = numberOfSteps;
-                break;
-            case (2):
-                daysOfMarch[dayNumber] = numberOfSteps;
-                break;
-            case (3):
-                daysOfApril[dayNumber] = numberOfSteps;
-                break;
-            case (4):
-                daysOfMay[dayNumber] = numberOfSteps;
-                break;
-            case (5):
-                daysOfJune[dayNumber] = numberOfSteps;
-                break;
-            case (6):
-                daysOfJuly[dayNumber] = numberOfSteps;
-                break;
-            case (7):
-                daysOfAugust[dayNumber] = numberOfSteps;
-                break;
-            case (8):
-                daysOfSeptember[dayNumber] = numberOfSteps;
-                break;
-            case (9):
-                daysOfOctober[dayNumber] = numberOfSteps;
-                break;
-            case (10):
-                daysOfNovember[dayNumber] = numberOfSteps;
-                break;
-            case (11):
-                daysOfDecember[dayNumber] = numberOfSteps;
-                break;
-            default:
-                System.out.println("Неверная команда");
-        }
+        months[monthNumber].setStepsPerDays(dayNumber, numberOfSteps);
     }
 
     public void showStatisticForTheMonth(String selectedMonth) {
         switch (selectedMonth.toUpperCase()) {
             case ("ЯНВАРЬ"):
-                System.out.println("\nОбщая статистика за январь:");
-                collectStatisticForTheMonth(daysOfJanuary);
+                collectStatisticForTheMonth(months[0].getDays());
                 break;
             case ("ФЕВРАЛЬ"):
-                System.out.println("\nОбщая статистика за февраль:");
-                collectStatisticForTheMonth(daysOfFebruary);
+                collectStatisticForTheMonth(months[1].getDays());
                 break;
             case ("МАРТ"):
-                System.out.println("\nОбщая статистика за март:");
-                collectStatisticForTheMonth(daysOfMarch);
+                collectStatisticForTheMonth(months[2].getDays());
                 break;
             case ("АПРЕЛЬ"):
-                System.out.println("\nОбщая статистика за апрель:");
-                collectStatisticForTheMonth(daysOfApril);
+                collectStatisticForTheMonth(months[3].getDays());
                 break;
             case ("МАЙ"):
-                System.out.println("\nОбщая статистика за май:");
-                collectStatisticForTheMonth(daysOfMay);
+                collectStatisticForTheMonth(months[4].getDays());
                 break;
             case ("ИЮНЬ"):
-                System.out.println("\nОбщая статистика за июнь:");
-                collectStatisticForTheMonth(daysOfJune);
+                collectStatisticForTheMonth(months[5].getDays());
                 break;
             case ("ИЮЛЬ"):
-                System.out.println("\nОбщая статистика за июль:");
-                collectStatisticForTheMonth(daysOfJuly);
+                collectStatisticForTheMonth(months[6].getDays());
                 break;
             case ("АВГУСТ"):
-                System.out.println("\nОбщая статистика за август:");
-                collectStatisticForTheMonth(daysOfAugust);
+                collectStatisticForTheMonth(months[7].getDays());
                 break;
             case ("СЕНТЯБРЬ"):
-                System.out.println("\nОбщая статистика за сентябрь:");
-                collectStatisticForTheMonth(daysOfSeptember);
+                collectStatisticForTheMonth(months[8].getDays());
                 break;
             case ("ОКТЯБРЬ"):
-                System.out.println("\nОбщая статистика за октябрь:");
-                collectStatisticForTheMonth(daysOfOctober);
+                collectStatisticForTheMonth(months[9].getDays());
                 break;
             case ("НОЯБРЬ"):
-                System.out.println("\nОбщая статистика за ноябрь:");
-                collectStatisticForTheMonth(daysOfNovember);
+                collectStatisticForTheMonth(months[10].getDays());
                 break;
             case ("ДЕКАБРЬ"):
-                System.out.println("\nОбщая статистика за декабрь:");
-                collectStatisticForTheMonth(daysOfDecember);
+                collectStatisticForTheMonth(months[11].getDays());
                 break;
-            case ("ВЫХОД"):
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Неверная команда");
         }
     }
 
@@ -137,7 +70,6 @@ public class StepTracker {
             }
             System.out.print(i + 1 + " день: " + arr[i]);
             System.out.print("   |   ");
-
         }
         System.out.println();
     }
@@ -178,5 +110,4 @@ public class StepTracker {
         System.out.println("\nКолличество сожженых калорий за месяц " + converter.stepsIntoCalories(sumOfStepsInMonth(arr)));
         System.out.println("\nЧисло дней подряд с выполненной целью в течении месяца " + maxDaysOfGoals(arr));
     }
-
 }
