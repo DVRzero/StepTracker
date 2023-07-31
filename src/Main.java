@@ -10,25 +10,8 @@ public class Main {
         printMenu();
         Scanner scanner = new Scanner(System.in);
 
-    /*  проблема: при вводе любой команды (кроме почему-то "СТАТИСТИКА"), после того как команда отработает,
-        проходт еще один цикл с пустым значением переменной enterCommand
-        из-за чего появляется лишнее
-
-        Список доступных команд:
-        1) Ввести количество шагов за определённый день - "ВВОД"
-        2) Напечатать статистику за определённый месяц - "СТАТИСТИКА"
-        3) Изменить цель по количеству шагов в день - "ЦЕЛЬ"
-        4) Конвертировать шаги в пройденные километры или сожженные калории - "КОНВЕРТАЦИЯ"
-        5) Выйти из приложения - "ВЫЙТИ"
-
-        ВВЕДИТЕ КОМАНДУ:
-
-        Введена неверная команда
-
-        и только после этого можно ввести следующую команду
-     */
         while (!exit) {
-            String enterCommand = scanner.nextLine();
+            String enterCommand = scanner.next();
             switch (enterCommand.toUpperCase()) {
                 case ("ВВОД"):
                     int monthNumber;
@@ -67,7 +50,7 @@ public class Main {
 
                 case ("СТАТИСТИКА"):
                     System.out.println("Напишите название месяця, статистику которого хотите посмотреть: ");
-                    String selectedMonth = scanner.nextLine();
+                    String selectedMonth = scanner.next();
                     switch (selectedMonth.toUpperCase()) {
                         case ("ЯНВАРЬ"):
                             System.out.println("\nОбщая статистика за январь:");
@@ -145,7 +128,7 @@ public class Main {
                     System.out.println("Введите команду:" +
                             "\n1) Шаги в километры - \"КИЛОМЕТРЫ\"" +
                             "\n2) Шаги в калории - \"КИЛОКАЛОРИИ\"");
-                    String convertCommand = scanner.nextLine();
+                    String convertCommand = scanner.next();
                     switch (convertCommand.toUpperCase()) {
                         case ("КИЛОМЕТРЫ"):
                             System.out.println("Введите число шагов:");
